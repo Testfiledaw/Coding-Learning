@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tính điểm trung bình</title>
+    <link rel="stylesheet" href="../Project 3/style.css">
+    <script src="../Project 3/js.js"></script>
+    <viewport width="device-width" initial-scale="1.0"></viewport>
+    <style>
+        header {
+            text-align: center;
+        }
+        
+        #forminput {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+        
+        #tb {
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .bottomButton {
+            float: left;
+            width: 50%;
+            margin-left: 38%;
+            margin-top: 20px;
+            padding-left: 10px;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .bottomButton {
+                margin-left: 30%;
+            }
+        }
+        
+        @media screen and (min-width: 601px) and (max-width: 800px) {
+            .bottomButton {
+                margin-left: 33%;
+            }
+        }
+        
+        @media screen and (min-width: 900px) {
+            .bottomButton {
+                margin-left: 40%;
+            }
+        }
+        
+        @media screen and (min-width: 1200px) {
+            .bottomButton {
+                margin-left: 43%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>TÍNH ĐIỂM TRUNG BÌNH CỦA HỌC SINH TRONG LỚP</h1>
+    </header>
+    <div id="forminput">
+        <form>
+            <input type="text" placeholder="Họ và Tên" id="name" value="">
+            <input type="text" placeholder="Điểm Toán" id="math" value="">
+            <input type="text" placeholder="Điểm Lý" id="physics" value="">
+            <input type="text" placeholder="Điểm Hoá" id="chemistry" value="">
+            <input type="button" id="button1" value="Nhập">
+    </div>
+    <div id="tb">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 10%; font-weight: bold;">STT</th>
+                    <th style="width: 30%; font-weight: bold;">Họ và tên</th>
+                    <th style="width: 10%; font-weight: bold;">Toán</th>
+                    <th style="width: 10%; font-weight: bold;">Lý</th>
+                    <th style="width: 10%; font-weight: bold;">Hoá</th>
+                    <th style="width: 15%; font-weight: bold;">Điểm trung bình</th>
+                    <th style="width: 15%; font-weight: bold;">Xếp loại HS</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="bottomButton">
+        <button type="button" id="button2">Tính điểm TB</button>
+        <button type="button" id="button3">Xếp loại HS</button>
+    </div>
+    </form>
+    <script>
+        let stt = 1;
+        let listuser = [];
+
+        $(document).ready(function() {
+            // Tạo sự kiện khi click vào nút "Nhập"
+            $("#button1").click(function() {
+                // Gán các giá tri
+                let name = $("#name").val();
+                let math = $("#math").val();
+                let physics = $("#physics").val();
+                let chemistry = $("#chemistry").val();
+
+                // Kiểm tra các giá trị tại input
+                if (name == "" || math == "" || physics == "" || chemistry == "") {
+                    alert("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+                if (isNaN(math) || isNaN(physics) || isNaN(chemistry)) {
+                    alert("Vui lòng nhập điểm là số");
+                    return;
+                }
+                if (math < 0 || math > 10 || physics < 0 || physics > 10 || chemistry < 0 || chemistry > 10) {
+                    alert("Điểm phải nằm trong khoảng 0-10");
+                    return;
+                }
+
+                // Xoá các giá trị sau khi nhập
+                $("#name").val("");
+                $("#math").val("");
+                $("#physics").val("");
+                $("#chemistry").val("");
+
+                // Thêm dòng mới vào table với các giá trị tương ứng của user bằng
+                $("#myTable").append(`<tr>
+                <td>${stt}</td>
+                <td>${name}</td>
+                <td>${math}</td>
+                <td>${physics}</td>
+                <td>${chemistry}</td>
+                <td>${"?"}</td>
+                <td>${"?"}</td>
+                </tr>`);
+                stt++; // Tăng biến stt lên 1 đơn vị (tự động đánh số thứ tự cho dòng mới)
+            });
+
+            // Tạo sự kiện khi click vào nút "Tính điểm trung bình"
+            $("#button2").click(function() {
+                // Gọi tên và thiết lập giá trị ban đầu cho biến sum và average
+                let sum = 0;
+                let average = 0;
+                // Tìm table
+                let rows = $("#myTable tr");
+                // Tìm và gán giá trị vào các ô điểm
+                let math = rows.find("td:nth-child(3)"); // td:nth-child(x) là một dạng selector trong css với x là số thứ tự của ô là phần tử con của ô đó
+                let physics = rows.find("td:nth-child(4)");
+                let chemistry = rows.find("td:nth-child(5)");
+                // Lặp qua từng dòng
+                for (let i = 0; i < rows.length; i++) {
+                    // Tính điểm trung bình của từng học sinh
+                    sum = parseInt(math[i].innerText) + parseInt(physics[i].innerText) + parseInt(chemistry[i].innerText);
+                    average = sum / 3;
+                    // Điền giá trị tính được trong ô trung bình
+                    rows[i].children[5].innerText = average.toFixed(1);
+                }
+            });
+
+            // Tạo sự kiện khi click vào nút "Xác định học sinh giỏi"
+            $("#button3").click(function() {
+
+                // Tìm table
+                let rows = $("#myTable tr");
+                // Tìm và gán giá trị vào các ô xếp loại
+                let average = rows.find("td:nth-child(5)");
+                // Lặp qua từng dòng
+                for (let i = 0; i < rows.length; i++) {
+                    // Tính xếp loại của từng học sinh
+                    if (average[i].innerText >= 8) {
+                        rows[i].children[6].innerText = "Giỏi";
+                    } else if (average[i].innerText >= 7) {
+                        rows[i].children[6].innerText = "Khá";
+                    } else if (average[i].innerText >= 5) {
+                        rows[i].children[6].innerText = "Trung bình";
+                    } else {
+                        rows[i].children[6].innerText = "Yếu";
+                    }
+                }
+            });
+        });
+    </script>

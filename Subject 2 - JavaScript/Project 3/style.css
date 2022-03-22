@@ -1,0 +1,36 @@
+    body {
+        background-color: antiquewhite;
+    }
+    
+    form {
+        /*center form*/
+        margin: auto;
+        margin-top: 20px;
+        width: 30%;
+    }
+    
+    form input,
+    form button,
+    .noti {
+        /*center element*/
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2%;
+        /*set size*/
+        width: 80%;
+    }
+    /*Table Css*/
+    
+    table {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+    
+    th,
+    td {
+        border: 1px solid black;
+        text-align: center;
+        padding: 2px;
+    }
