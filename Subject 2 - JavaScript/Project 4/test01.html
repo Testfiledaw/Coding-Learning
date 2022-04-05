@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My News</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../Project 4/style.css">
+    <script src="../Project 4/javas.js"></script>
+    <style>
+        header {
+            background-color: rgba(255, 102, 0, 0.993);
+            padding: 2px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: thin;
+            box-sizing: border-box;
+        }
+        
+        .material-icons {
+            font-size: 30px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container-fluid">
+
+        <header>
+            <div class="container">
+                <h1>My News</h1>
+                <p type="button" data-toggle="modal" data-target="#modalId">
+                    <i class="material-icons">search</i>
+                </p>
+
+            </div>
+            <div>
+            </div>
+        </header>
+
+        <article class="content">
+            <div class="container" id="container">
+                <ul>
+                    <li>
+                        <img src="../Project 4/news.jfif" alt="news">
+                        <div>
+                            <a href="#"><b>Trừng phạt kinh tế đối với Nga và những hệ luỵ với kinh tế thế giới</b>
+                                <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../Project 4/news.jfif" alt="news">
+                        <div>
+                            <a href="#"><b>Đồng USD trong bối cảnh kinh thế thế giới hiện nay</b>
+                                <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../Project 4/news.jfif" alt="news">
+                        <div>
+                            <a href="#"><b>Trung Quốc thử nghiệm đồng Nhân dân tệ điện tử</b>
+                                <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../Project 4/news.jfif" alt="news">
+                        <div>
+                            <a href="#"><b>CEO Biance: "Mọi người có thể đã mất trí vì NFT"</b>
+                                <p></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Modal dialog-->
+        <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modlTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">SEARCH FOR NEWS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="alert-dismissible">
+                            Your keywords: <input type="search" id="search1"> <input type="submit" id='search' onclick="searching()" value="Search"> </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
